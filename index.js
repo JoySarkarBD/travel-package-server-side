@@ -101,7 +101,7 @@ async function run() {
                     status: "Approved"
                 },
             };
-            const result = await ordersCollection.updateOne(filter, updateDoc, options)
+            const result = await bookOrderCollection.updateOne(filter, updateDoc, options)
             res.json(result);
         });
 
