@@ -91,6 +91,20 @@ async function run() {
             // console.log(allBookedOrders);
         })
 
+
+        app.put("/manageOrders/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    status: "Approved"
+                },
+            };
+            const result = await ordersCollection.updateOne(filter, updateDoc, options)
+            res.json(result);
+        });
+
     } finally {
         // await client.close();
     }
