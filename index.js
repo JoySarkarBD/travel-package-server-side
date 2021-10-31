@@ -34,8 +34,9 @@ async function run() {
 
         //POST API FOR BOOK PACKAGE API
         app.post('/bookedPackages', async (req, res) => {
+            console.log("hitting the post");
             const bookedPackage = req.body;
-            // console.log(bookedPackage);
+            console.log(bookedPackage);
             const result = await bookOrderCollection.insertOne(bookedPackage);
             res.json(result)
             // console.log(result);
@@ -94,6 +95,7 @@ async function run() {
 
         app.put("/manageOrders/:id", async (req, res) => {
             const id = req.params.id;
+            console.log(id);
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
@@ -104,6 +106,7 @@ async function run() {
             const result = await bookOrderCollection.updateOne(filter, updateDoc, options)
             res.json(result);
         });
+
 
     } finally {
         // await client.close();
